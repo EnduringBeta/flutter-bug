@@ -7,7 +7,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  static const String bugName = "Bug Name";
+  static const String bugName = "Cupertino Slider Hit Test Bug";
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +28,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  static const double sliderValue1 = 1;
+  static const double sliderValue2 = 5;
+  static const double sliderValue3 = 9;
 
-  void _incrementCounter() {
+  List<double> sliderValues = <double>[
+    sliderValue1,
+    sliderValue2,
+    sliderValue3
+  ];
+
+  void _onSliceChange(int sliderNum, double newValue) {
     setState(() {
-      _counter++;
+      sliderValues[sliderNum] = newValue;
     });
   }
 
@@ -46,18 +54,35 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            const Text('Slider 1'),
+            Slider.adaptive(
+              key: const Key('Slider 1'),
+              value: sliderValues[0],
+              onChanged: (newValue) => _onSliceChange(0, newValue),
+              divisions: 10,
+              min: 0,
+              max: 10,
+            ),
+            const Text('Slider 2'),
+            Slider.adaptive(
+              key: const Key('Slider 2'),
+              value: sliderValues[1],
+              onChanged: (newValue) => _onSliceChange(1, newValue),
+              divisions: 10,
+              min: 0,
+              max: 10,
+            ),
+            const Text('Slider 3'),
+            Slider.adaptive(
+              key: const Key('Slider 3'),
+              value: sliderValues[2],
+              onChanged: (newValue) => _onSliceChange(2, newValue),
+              divisions: 10,
+              min: 0,
+              max: 10,
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
