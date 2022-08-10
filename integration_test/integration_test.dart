@@ -22,7 +22,7 @@ void main() {
           expect(find.byKey(const Key('Slider 3')), findsOneWidget);
 
           tester.printToConsole('If iOS/Cupertino sliders, this doesn\'t find '
-              'the sliders...');
+              'the sliders (unless their initial value is 5, in the center...');
 
           Finder slidersFinder = find.byType(Slider).hitTestable();
           expect(slidersFinder, findsNWidgets(3));
