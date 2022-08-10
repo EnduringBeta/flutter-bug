@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bug">
+    package="com.example.flutter_bug">
    <application
-        android:label="bug"
+        android:label="flutter-bug"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
