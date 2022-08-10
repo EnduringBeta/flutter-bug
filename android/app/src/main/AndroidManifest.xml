@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_bug">
+    package="com.example.flutterbug">
    <application
         android:label="flutter-bug"
         android:name="${applicationName}"
