@@ -7,7 +7,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  static const String bugName = "Bug Name";
+  static const String bugName = "Huge Emoji";
 
   @override
   Widget build(BuildContext context) {
