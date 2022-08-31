@@ -30,6 +30,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  // TEST: increase this and observe that after a threshold, the emoji
+  // out-scales the text next to it dramatically?
+  final double fontSize = 40.0;
+
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -48,8 +52,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             const Text('You have pushed the button this many times:'),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              '$_counter 👋',
+              style: TextStyle(fontSize: fontSize),
             ),
           ],
         ),
