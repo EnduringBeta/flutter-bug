@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -46,7 +49,20 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           child: const Text("This is an invisible widget")),
     );
-    Share.shareXFiles([]);
+
+    final String tempDir = (await getTemporaryDirectory()).path;
+    final String filePath =
+        "$tempDir${Platform.pathSeparator}testFile-$_counter.png";
+    final File file = File(filePath);
+    try {
+      file.writeAsBytesSync(bytes);
+    } catch (e) {
+      debugPrint(e.toString());
+      return null;
+    }
+
+    Share.shareXFiles([XFile(filePath)]);
+
     setState(() {
       _counter++;
     });
