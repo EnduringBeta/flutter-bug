@@ -38,6 +38,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int _counter = 0;
 
+  // This bug happens without the Screenshot plugin, as well.
+  // It applies on Android when sharing an image and tapping "Edit".
+  // I haven't tested iOS.
   void _screenshotShareAndCount() async {
     Uint8List bytes = await screenshotController.captureFromWidget(
       Container(
@@ -52,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final String tempDir = (await getTemporaryDirectory()).path;
     final String filePath =
         "$tempDir${Platform.pathSeparator}testFile-$_counter.png";
+    debugPrint(filePath);
     final File file = File(filePath);
     try {
       file.writeAsBytesSync(bytes);
