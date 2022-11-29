@@ -39,7 +39,6 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _screenshotShareAndCount() async {
-    // TODOROSS
     Uint8List bytes = await screenshotController.captureFromWidget(
       Container(
           padding: const EdgeInsets.all(30.0),
