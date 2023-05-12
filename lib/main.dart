@@ -1,6 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+    apiKey: 'fake',
+    appId: 'fake',
+    messagingSenderId: 'fake',
+    projectId: 'fake',
+  ));
   runApp(const MyApp());
 }
 
