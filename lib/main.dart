@@ -75,9 +75,9 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
             icon: Image.asset(
               'assets/newsletter.png',
-              width: 20,
+              //width: 20,
             ),
-            iconSize: 50,
+            iconSize: 50, // Expect drawer image to be 50x50px, not 100x100px
             onPressed: () => debugPrint('Icon button tapped'),
           ),
         ],
