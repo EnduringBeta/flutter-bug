@@ -16,13 +16,14 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  static const String bugName = "Bug Name";
+  static const String bugName = "Icon Button Size";
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Flutter Bug/Issue',
-      home: MyHomePage(title: bugName),
+      theme: ThemeData(useMaterial3: true),
+      home: const MyHomePage(title: bugName),
     );
   }
 }
@@ -68,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          // It appears that Image width can only make it smaller than 32 and
+          // It appears that Image width can only make it smaller than 32, and
           // iconSize can only make the container larger than 32.
           // The image is 100x100px.
           IconButton(
