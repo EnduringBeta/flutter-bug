@@ -51,6 +51,36 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      drawer: Drawer(
+          child: Column(
+        children: [
+          Flexible(
+            child: ListView(
+              children: const [
+                ListTile(
+                  leading: Icon(Icons.mode_edit),
+                  title: Text('Edit Object'),
+                ),
+                ListTile(
+                  leading: Icon(Icons.settings),
+                  title: Text('Settings'),
+                ),
+              ],
+            ),
+          ),
+          // It appears that Image width can only make it smaller than 32 and
+          // iconSize can only make the container larger than 32.
+          // The image is 100x100px.
+          IconButton(
+            icon: Image.asset(
+              'assets/newsletter.png',
+              width: 20,
+            ),
+            iconSize: 50,
+            onPressed: () => debugPrint('Icon button tapped'),
+          ),
+        ],
+      )),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
