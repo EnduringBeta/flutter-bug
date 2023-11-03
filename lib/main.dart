@@ -1,8 +1,10 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // This causes the app to crash on iOS because of missing
+  // GoogleService-Info.plist files.
+  /*
   await Firebase.initializeApp(
       options: const FirebaseOptions(
     apiKey: 'fake',
@@ -10,6 +12,7 @@ Future<void> main() async {
     messagingSenderId: 'fake',
     projectId: 'fake',
   ));
+  */
   runApp(const MyApp());
 }
 
