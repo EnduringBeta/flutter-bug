@@ -1,21 +1,3 @@
-buildscript {
-    ext {
-        // Update Gradle and Kotlin versions here
-        agp_version = '7.4.2'
-        kotlin_version = '1.8.20'
-    }
-
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath "com.android.tools.build:gradle:$agp_version"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
 allprojects {
     repositories {
         google()
