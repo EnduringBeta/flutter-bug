@@ -1,0 +1,60 @@
+name: Merge Action
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  Build-Test-Android:
+    name: Build Android app and run tests
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 Job triggered by ${{ github.event_name }} event."
+      - run: echo "🐧 Running on ${{ runner.os }}."
+      - name: Check out branch ${{ github.ref }} (${{ github.repository }})
+        uses: actions/checkout@v4
+      - name: Get Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "oracle"
+          java-version: "17"
+      - name: 🐦 Get Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.19"
+          channel: 'stable'
+          cache: true
+          cache-key: sparrow
+      - name: Identify Flutter version
+        run: flutter --version
+      - name: Try to get dependencies cache
+        id: cache
+        uses: actions/cache@v4
+        env:
+          cache-name: pubspec
+          pubspec-file: pubspec.yaml
+        with:
+          path: ${{ env.PUB_CACHE }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles(env.pubspec-file) }}
+# TODOROSS: replace with other action that can cross workflows
+#      - name: 🎁 Get artifact
+#        uses: actions/download-artifact@v4
+#        with:
+          # Name of the artifact to download.
+          # If unspecified, all artifacts for the run are downloaded.
+          # Optional.
+#          name:
+          # Destination path. Supports basic tilde expansion.
+          # Optional. Default is $GITHUB_WORKSPACE
+#          path:
+          # The GitHub token used to authenticate with the GitHub API.
+          # This is required when downloading artifacts from a different repository or from a different workflow run.
+          # Optional. If unspecified, the action will download artifacts from the current repo and the current workflow run.
+#          github-token:
+          # The id of the workflow run where the desired download artifact was uploaded from.
+          # If github-token is specified, this is the run that artifacts will be downloaded from.
+          # Optional. Default is ${{ github.run_id }}
+#          run-id:
+      - name: 🏃 Run integration tests
+        run: echo "TODOROSS"
+      - run: echo "❕ This job's status is ${{ job.status }}."

@@ -1,0 +1,46 @@
+name: Pull Request Action
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  Build-Test-Android:
+    name: Build Android app and run tests
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 Job triggered by ${{ github.event_name }} event."
+      - run: echo "🐧 Running on ${{ runner.os }}."
+      - name: Check out branch ${{ github.ref }} (${{ github.repository }})
+        uses: actions/checkout@v4
+      - name: Get Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "oracle"
+          java-version: "17"
+      - name: 🐦 Get Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.19"
+          channel: 'stable'
+          cache: true
+          cache-key: sparrow
+      - name: Identify Flutter version
+        run: flutter --version
+      - name: Try to get dependencies cache
+        id: cache
+        uses: actions/cache@v4
+        env:
+          cache-name: pubspec
+          pubspec-file: pubspec.yaml
+        with:
+          path: ${{ env.PUB_CACHE }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles(env.pubspec-file) }}
+      - name: 👽 Build release Android app
+        run: flutter build apk
+      - name: 🧪 Run widget tests
+        run: flutter test test/
+      - name: 📦️ Create artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: "android-${{ github.run_id }}"
+          path: "build/app/outputs/flutter-apk/app-release.apk"
+      - run: echo "❕ This job's status is ${{ job.status }}."
