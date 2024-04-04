@@ -41,6 +41,6 @@ jobs:
       - name: 📦️ Create artifact
         uses: actions/upload-artifact@v4
         with:
-          name: "${{ github.ref_name }}-${{ github.run_id }}"
+          name: "android-${{ github.run_id }}"
           path: "build/app/outputs/flutter-apk/app-release.apk"
       - run: echo "❕ This job's status is ${{ job.status }}."
