@@ -1,26 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_intro/flutter_intro.dart';
 
+import 'intro_test_route.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // This causes the app to crash on iOS because of missing
-  // GoogleService-Info.plist files.
-  /*
-  await Firebase.initializeApp(
-      options: const FirebaseOptions(
-    apiKey: 'fake',
-    appId: 'fake',
-    messagingSenderId: 'fake',
-    projectId: 'fake',
-  ));
-  */
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  static const String bugName = "Bug Name";
+  static const String bugName = "Flutter Intro Bug";
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +29,7 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
-  static const String introGroup = 'intro group';
+  static const String introGroup = 'unused intro group';
 
   static const bool shouldDelay = false;
   static const Duration introGuideDelay = Duration(seconds: 1);
@@ -73,15 +64,12 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         leading: IntroStepBuilder(
           order: 3,
-          text: 'Use this to refresh and run the intro again.',
+          text: 'Use this to go to the bug test route.',
           group: MyHomePage.introGroup,
           builder: (_, Key key) => IconButton(
             key: key,
             icon: const Icon(Icons.refresh),
-            onPressed: () => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                    builder: (context) =>
-                        const MyHomePage(title: MyApp.bugName))),
+            onPressed: () => Navigator.of(context).push(buildIntroTestRoute()),
           ),
         ),
       ),
@@ -107,7 +95,8 @@ class _MyHomePageState extends State<MyHomePage> {
         order: 1,
         text: 'This is the FAB. Tap it to increase the counter!',
         group: MyHomePage.introGroup,
-        onWidgetLoad: () => _onWidgetLoad(context, MyHomePage.introGroup),
+        // Don't start intro here; test other route
+        //onWidgetLoad: () => _onWidgetLoad(context, MyHomePage.introGroup),
         builder: (_, Key key) => FloatingActionButton(
           key: key,
           onPressed: _incrementCounter,
