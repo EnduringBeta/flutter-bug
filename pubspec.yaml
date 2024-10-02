@@ -31,9 +31,9 @@ dependencies:
     sdk: flutter
 
   # For testing anything Firebase
-  firebase_core: ^2.12.0
-  firebase_auth: ^4.6.0
-  firebase_ui_auth: ^1.4.0
+  firebase_core: ^3.6.0
+  firebase_auth: ^5.3.1
+  firebase_ui_auth: ^1.16.0
 
 dev_dependencies:
   integration_test:
@@ -46,7 +46,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.1
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
