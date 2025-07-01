@@ -35,6 +35,10 @@ dependencies:
   #firebase_auth: ^4.6.0
   #firebase_ui_auth: ^1.4.0
 
+  # For testing web endpoints
+  http: ^1.4.0
+  dio: ^5.8.0+1
+
 dev_dependencies:
   integration_test:
     sdk: flutter
